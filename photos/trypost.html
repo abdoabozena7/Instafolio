@@ -1,0 +1,927 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abozena - Profile</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="esheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: var(--secondary-color-light);
+      color: #f1f1f1;
+      line-height: 1.5;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* MAIN ACCENT COLOR */
+    :root {
+      --main-color-light: #443627  ;
+      --secondary-color-light:#fff0dc   ;  
+    }
+    
+  
+    
+    /* COVER IMAGE */
+    .cover {
+      width: 100%;
+      height: 220px;
+      background: url('photos/Cover1.png') center/cover no-repeat;
+      position: relative;
+      animation: fadeIn 1s ease-out;
+      border-bottom-left-radius: 30px;
+border-bottom-right-radius: 30px;
+      box-shadow: 0 0px 30px var(--main-color-light) !important;
+      border: 2px solid var(--secondary-color-light) !important;
+
+
+    }
+    
+    /* PROFILE IMAGE - Enhanced */
+    .profile-img {
+      position: absolute;
+      top: 160px !important;
+      left: 22px !important;
+      width: 130px !important;
+      height: 130px !important;
+      object-fit: cover;
+      border: 2px solid var(--secondary-color-light) !important;
+      border-radius: 50%;
+      box-shadow: 0 3px 12px var(--secondary-color-light) !important;
+      animation: slideIn 0.8s ease-out;
+    }
+    
+    /* PROFILE INFO with Professional Bio */
+    .profile-info {
+      padding: 60px 20px 15px;
+      animation: fadeIn 1s ease-out;
+    }
+    .profile-info h2 {
+      font-family: 'Times New Roman', cursive;
+      font-size: 30px;
+      margin-bottom: 6px;
+      color:var(--main-color-light);
+      
+    }
+    .verified {color: #1DA1F2; /*     */
+        font-size: 18px;
+          margin-left: 6px;
+            vertical-align: middle;
+            } 
+
+            
+    .profile-info p.handle {
+      background: linear-gradient(90deg,rgb(224, 192, 145), rgb(136, 119, 88));
+        -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      margin-top: 15px;
+      font-size: 22px;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    .profile-info p.bio {
+      font-size: 16px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color:var(--main-color-light);
+      font-family: 'Comic Sans MS', cursive;
+    }
+    /* Updated professional bio */
+    .profile-info p.bio::before {
+      content: "When the world starts to fall apart, I smirk, open my editor, and turn the noise into clean code.";
+    }
+    .profile-stats {
+      display: flex;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .profile-stats div {
+      margin-right: 25px;
+      color: var(--secondary-color-light);
+    }
+    .scroll-down {
+      font-size: 30px;
+      text-align: center;
+      opacity: 1;
+      animation: bounce 1s infinite;
+      margin-top: -20px;
+      color: #000;
+    }
+    @keyframes bounce {
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(10px); }
+    }
+    
+    /* NAVIGATION TABS */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--secondary-color-light);
+      margin-top: 10px;
+    }
+    .tabs div {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+  transition: border .3s, color .3s;
+      color:var(--secondary-color-light);
+    }
+    .tabs .active {
+      border-bottom: 2px solid var(--main-color-light);
+      background: linear-gradient(90deg, rgb(196, 171, 144), rgb(141, 92, 9));
+        -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+    }
+    
+    /* POSTS SECTION */
+    .posts, .projects {
+      padding: 15px 20px;
+      animation: fadeIn 1s ease-out;
+    }
+    .post {
+      border-bottom: 1px solid #333;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      animation : fadeUp 1s ease-in;
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+          }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .post-header img {
+      border: 1px solid var(--secondary-color-light) !important;
+      border-radius: 50%;
+      box-shadow: 0 3px 6px var(--secondary-color-light) !important;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+    .post-header .user-info {
+      font-size: 17px;
+      color:var(--secondary-color-light);
+    }
+    .post-header .user-info span.name {
+      font-weight: bold;
+      margin-right: 8px !important;
+      color: var(--secondary-color-light);
+    }
+    .post-header .user-info span.handle {
+      color: #aaa;
+      font-size: 14px;
+    }
+    .post-content {
+     
+      font-size: 18px;
+      margin: 10px 0;
+      color:var(--secondary-color-light);
+    }
+    /* Media container for images/videos */
+    .media-container {
+      
+      width: 100%;
+      margin: 10px 0;
+      overflow: hidden;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .media-container:hover {
+      transform: scale(1.02);
+    }
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .post-actions {
+      display:flex;
+      justify-content: space-around;
+      font-size: 18px;
+      color: var(--secondary-color-light);
+      margin-top: 8px;
+    }
+    .post-actions div {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .post-actions div:hover {
+      color:#000;
+      transform: scale(1.05);
+    }
+    .post-actions div i {
+      margin-right: 5px;
+    }
+    /* Reaction (like) style when active */
+    .post-actions .react i.liked {
+      color: red;
+    }
+    
+    /* Projects Grid */
+    
+    }
+    .project-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: var(--main-color-light);
+    }
+    .project-description {
+      font-size: 14px;
+      color: #aaa;
+    }
+    .profile-img {
+      position: absolute;
+      top:180px;
+      bottom: -20px;
+      left: 10px;
+      border: 5px solid #000;
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      overflow: hidden;
+      box-shadow: 0 6px 12px #000;
+      animation: slideIn 0.8s ease-out;
+    }
+    
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      header h2 { font-size: 18px; }
+      .profile-info h2 { font-size: 22px; }
+      .profile-info p.bio { font-size: 14px; }
+      .post-content { font-size: 16px; }
+    }
+    .navigation {
+      position: fixed;
+      bottom: 12px;
+      left: 10px;
+      right: 10px;
+      max-width: 468px;
+      margin: 0 auto;
+      backdrop-filter: blur(13px);
+      border-radius: 50px;
+      border: 1px solid var(--secondary-color-light);
+
+      padding: 13px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: none;
+      border: none;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    
+    .nav-btn.active {
+      color: var(--foreground);
+    }
+    
+    .nav-btn i {
+      font-size: 24px;
+    }
+    
+    /* Views */
+    .view {
+      display: none;
+    }
+    
+    .view.active {
+      display: block;
+    }  
+<!--/* <!-- -------------------CSS--------------------------> */-->
+    
+.post-test {
+  width: 95%;
+  margin: 15px auto;
+  background:rgb(38, 38, 38,0.1);
+  box-shadow: -0px -0px 80px rgba(0, 0, 0, 0.99);
+  overflow: hidden;
+  margin-bottom: 40px;
+  background-color:var(--main-color-light); 
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.imge-post {
+  height: 70px;
+  background-color: var(--secondary-color-light);
+  position: relative;
+}
+
+.Usericon-post {
+  background-color: #414141;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.Usericon-post {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.Usericon-post img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.UserName-post {
+  color: var(--secondary-color-light);
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 55px;
+}
+
+.Id-post {
+  color:rgb(190, 178, 161) ;
+  font-size: 14px;
+  margin-left: 55px;
+}
+.imge-post {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--main-color-light);
+  
+}
+
+
+.Description-post img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.Description-post video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+
+.social-media {
+  background-color: var(--main-color-light);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 10px;
+  border-top: 2px solid #414141;
+}
+
+.social-media a i {
+  color: var(--secondary-color-light);
+  font-size: 20px;
+  ;
+}
+   
+.highlights {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+.highlight {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+.highlight img,
+.highlight i {
+  width: 65px;
+  height: 65px;
+  background: radial-gradient(circle,rgb(87, 77, 65),rgb(67, 61, 52));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color-light);
+  font-size: 28px;
+  object-fit: cover;
+  padding: 5px;
+  margin-top: -5px
+}
+
+.highlight p {
+  font-size: 12px;
+  color: var(--main-color-light);
+}
+
+
+
+
+.profile-numbers {
+  display: flex;
+   justify-content: space-around;
+  margin-left: 150px;
+  margin-bottom:-36px;
+ 
+}
+
+.profile-numbers div {
+  
+  color: var(--main-color-light);
+}
+
+.profile-numbers strong {
+  font-size: 22px;
+  display: block;
+}
+
+.profile-numbers p {
+  font-size: 14px;
+  margin-top: 3px;
+  font-family: 'Comic Sans MS', cursive;
+}
+.post-test {
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0.6;
+  transform: translateY(50px) rotateX(10deg);
+}
+
+  </style>
+</head>
+<body>
+
+
+
+  
+  <!-- COVER IMAGE -->
+  <div class="cover">  <div class="profile-img"><img src="photos/prof.jpg"></div>
+  </div>
+  <div class="scroll-down">↓↓</div>
+
+
+  <div class="profile-numbers">
+  <div>
+    <strong>+25</strong>
+    <p>Projects</p>
+  </div>
+  <div>
+    <strong>&nbsp254k</strong>
+    <p>Followers</p>
+  </div>
+  <div>
+    <strong> &nbsp&nbsp24</strong>
+    <p>Following</p>
+  </div>
+</div>
+  
+
+  <!-- PROFILE INFORMATION -->
+  <div class="profile-info">
+    <h2>Abdo Abozena<span class="verified"><i class="fas fa-check-circle"></i></span></h2>
+    <p class="handle">Web Artist</p>
+    <p class="bio"></p>
+    <div class="profile-stats">
+      <div><strong>23</strong> Following</div>
+      <div><strong>165K</strong> Followers</div>
+    </div>
+  </div>
+  
+
+  <!--  HIGHLIGHTS -->
+  <div class="highlights">
+  <div class="highlight">
+  <i class="fas fa-brain"></i>
+    <p>Creativety</p>
+  </div>
+  <div class="highlight">
+    <i class="fas fa-code"></i>
+    <p>React</p>
+  </div>
+  <div class="highlight">
+    <i class="fas fa-file-code"></i>
+    <p>TypeScript</p>
+  </div>
+  <div class="highlight">
+    <i class="fas fa-server"></i>
+    <p>Nodejs</p>
+  </div>
+  <div class="highlight">
+    <i class="fas fa-palette"></i>
+    <p>UI/UX</p>
+  </div>
+</div>
+  
+  <!--  HIGHLIGHTS  END -->
+  <!-- NAVIGATION TABS -->
+  <div class="tabs">
+    <div id="postsTab" class="active">Posts</div>
+    <div id="projectsTab">Projects</div>
+  </div>
+
+<!-- POST 1-->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><img src="photos/q1.png" alt="Photo Post 4">
+  </div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 1 END) -->
+<!-- Post 2) -->
+<div class="post-test">
+<div class="imge-post">
+<div class="Usericon-post">
+  <img src="photos/prof.jpg" alt="user icon" />
+</div>
+<div>
+  <p class="UserName-post">Abdo Abozena</p>
+  <p class="Id-post">#Crafted_with_caffeine</p>
+</div>
+</div>
+
+
+<div class="Description-post"><video loop muted autoplay >
+<source src="videos/1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video></div>
+
+<div class="social-media">
+  <a href="#"><i class="far fa-heart"></i></a>
+  <a href="#"><i class="far fa-comment"></i></a>
+  <a href="#"><i class="fas fa-retweet"></i></a>
+  <a href="#"><i class="fas fa-share"></i></a>
+</div>
+</div>
+<!-- Post 2 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/7.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/2.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/3.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/4.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/6.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/5.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/8.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- POST 1-->
+<div class="post-test">
+<div class="imge-post">
+<div class="Usericon-post">
+  <img src="photos/prof.jpg" alt="user icon" />
+</div>
+<div>
+  <p class="UserName-post">Abdo Abozena</p>
+  <p class="Id-post">#Crafted_with_caffeine</p>
+</div>
+</div>
+
+
+<div class="Description-post"><img src="photos/q4.png" alt="Photo Post 4">
+</div>
+
+<div class="social-media">
+  <a href="#"><i class="far fa-heart"></i></a>
+  <a href="#"><i class="far fa-comment"></i></a>
+  <a href="#"><i class="fas fa-retweet"></i></a>
+  <a href="#"><i class="fas fa-share"></i></a>
+</div>
+</div>
+<!-- Post 1 END) -->
+<!-- Post 2) -->
+  <div class="post-test">
+  <div class="imge-post">
+  <div class="Usericon-post">
+    <img src="photos/prof.jpg" alt="user icon" />
+  </div>
+  <div>
+    <p class="UserName-post">Abdo Abozena</p>
+    <p class="Id-post">#Crafted_with_caffeine</p>
+  </div>
+</div>
+
+
+  <div class="Description-post"><video loop muted autoplay >
+  <source src="videos/77.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></div>
+
+  <div class="social-media">
+    <a href="#"><i class="far fa-heart"></i></a>
+    <a href="#"><i class="far fa-comment"></i></a>
+    <a href="#"><i class="fas fa-retweet"></i></a>
+    <a href="#"><i class="fas fa-share"></i></a>
+  </div>
+</div>
+<!-- Post 2 END) -->
+<!-- POST 1-->
+<div class="post-test">
+<div class="imge-post">
+<div class="Usericon-post">
+  <img src="photos/prof.jpg" alt="user icon" />
+</div>
+<div>
+  <p class="UserName-post">Abdo Abozena</p>
+  <p class="Id-post">#Crafted_with_caffeine</p>
+</div>
+</div>
+
+
+<div class="Description-post"><img src="photos/q3.png" alt="Photo Post 4">
+</div>
+
+<div class="social-media">
+  <a href="#"><i class="far fa-heart"></i></a>
+  <a href="#"><i class="far fa-comment"></i></a>
+  <a href="#"><i class="fas fa-retweet"></i></a>
+  <a href="#"><i class="fas fa-share"></i></a>
+</div>
+</div>
+<!-- Post 1 END) -->
+<!-- NAVIGATION -->
+  
+  <section class="navigation">
+  <button class="nav-btn active" data-view="feedView">
+    <i class="fas fa-home"></i>
+  </button>
+  <button class="nav-btn" data-view="searchView">
+    <i class="fas fa-search"></i>
+  </button>
+  <button class="nav-btn" data-view="notificationsView">
+    <i class="fas fa-bell"></i>
+  </button>
+  <button class="nav-btn" data-view="profileView">
+    <i class="fas fa-user"></i>
+  </button>
+</section>
+
+  <!-- TAB TOGGLING & REACTION SCRIPT -->
+  <script>
+  const cards = document.querySelectorAll('.post-test');
+
+  function handleScroll() {
+    const triggerBottom = window.innerHeight * 0.9;
+
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+
+      if (cardTop < triggerBottom) {
+        card.style.transform = 'translateY(0) rotateX(0deg)';
+        card.style.opacity = '1';
+      } else {
+        card.style.transform = 'translateY(50px) rotateX(10deg)';
+        card.style.opacity = '0.6';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', handleScroll);
+</script>
+
+</body>
+</html>
