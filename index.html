@@ -8,9 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Abozena - Profile</title>
   <!-- Font Awesome for icons -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="photos/Cover1.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link rel="esheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Hand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Hand&display=swap" rel="stylesheet" />
   <style>
     /* RESET & BASE STYLES */
     * {
@@ -424,9 +427,31 @@ font-family: 'Patrick Hand', cursive;
   font-family: 'Edu QLD Hand', cursive;
 }
 .post-test {
-  transition: transform 2.5s ease, opacity 0.9s ease;
+  transition: transform 0.65s ease, opacity 0.45s ease;
   opacity: 0.1;
-  transform: translateY(50px) rotateX(40deg);
+  transform: translateY(50px) rotateX(18deg);
+  will-change: transform, opacity;
+  contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
+}
+
+.post-test.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .post-test,
+  .post-test.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 
   </style>
@@ -437,9 +462,9 @@ font-family: 'Patrick Hand', cursive;
 
   
   <!-- COVER IMAGE -->
-  <div class="cover">  <div class="profile-img"><img src="photos/prof.jpg"></div>
+  <div class="cover">  <div class="profile-img"><img src="photos/prof.jpg" alt="Profile photo" width="130" height="130" fetchpriority="high" decoding="async" /></div>
   </div>
-  <div class="scroll-down">↓↓</div>
+  <div class="scroll-down">&darr;&darr;</div>
 
 
   <div class="profile-numbers">
@@ -501,7 +526,7 @@ font-family: 'Patrick Hand', cursive;
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -510,8 +535,8 @@ font-family: 'Patrick Hand', cursive;
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-<source src="videos/114.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+<source data-src="videos/114.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video></div>
 
@@ -527,7 +552,7 @@ Your browser does not support the video tag.
 <div class="post-test">
 <div class="imge-post">
 <div class="Usericon-post">
-  <img src="photos/prof.jpg" alt="user icon" />
+  <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
 </div>
 <div>
   <p class="UserName-post">Abdo Abozena</p>
@@ -536,8 +561,8 @@ Your browser does not support the video tag.
 </div>
 
 
-<div class="Description-post"><video loop muted autoplay >
-<source src="videos/1.mp4" type="video/mp4">
+<div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+<source data-src="videos/1.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video></div>
 
@@ -553,7 +578,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -562,8 +587,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/7.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/7.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -579,7 +604,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -588,8 +613,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/2.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/2.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -605,7 +630,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -614,8 +639,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/3.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/3.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -631,7 +656,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -640,8 +665,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/4.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/4.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -657,7 +682,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -666,8 +691,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/6.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/6.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -683,7 +708,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -692,8 +717,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/5.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/5.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -709,7 +734,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -718,8 +743,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/8.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/8.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -735,7 +760,7 @@ Your browser does not support the video tag.
 <div class="post-test">
 <div class="imge-post">
 <div class="Usericon-post">
-  <img src="photos/prof.jpg" alt="user icon" />
+  <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
 </div>
 <div>
   <p class="UserName-post">Abdo Abozena</p>
@@ -744,7 +769,7 @@ Your browser does not support the video tag.
 </div>
 
 
-<div class="Description-post"><img src="photos/q4.png" alt="Photo Post 4">
+<div class="Description-post"><img src="photos/q4.png" alt="Photo Post 4" loading="lazy" decoding="async">
 </div>
 
 <div class="social-media">
@@ -759,7 +784,7 @@ Your browser does not support the video tag.
   <div class="post-test">
   <div class="imge-post">
   <div class="Usericon-post">
-    <img src="photos/prof.jpg" alt="user icon" />
+    <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
   </div>
   <div>
     <p class="UserName-post">Abdo Abozena</p>
@@ -768,8 +793,8 @@ Your browser does not support the video tag.
 </div>
 
 
-  <div class="Description-post"><video loop muted autoplay >
-  <source src="videos/77.mp4" type="video/mp4">
+  <div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+  <source data-src="videos/77.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video></div>
 
@@ -785,7 +810,7 @@ Your browser does not support the video tag.
 <div class="post-test">
 <div class="imge-post">
 <div class="Usericon-post">
-  <img src="photos/prof.jpg" alt="user icon" />
+  <img src="photos/prof.jpg" alt="user icon" width="50" height="50" loading="lazy" decoding="async" />
 </div>
 <div>
   <p class="UserName-post">Abdo Abozena</p>
@@ -794,8 +819,8 @@ Your browser does not support the video tag.
 </div>
 
 
-<div class="Description-post"><video loop muted autoplay >
-<source src="videos/115.mp4" type="video/mp4">
+<div class="Description-post"><video class="lazy-video" loop muted playsinline preload="none">
+<source data-src="videos/115.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video></div>
 
@@ -827,26 +852,70 @@ Your browser does not support the video tag.
   <!-- TAB TOGGLING & REACTION SCRIPT -->
   <script>
   const cards = document.querySelectorAll('.post-test');
+  const lazyVideos = document.querySelectorAll('.lazy-video');
 
-  function handleScroll() {
-    const triggerBottom = window.innerHeight * 0.9;
+  const loadVideo = (video) => {
+    if (video.dataset.loaded === 'true') {
+      return;
+    }
 
-    cards.forEach(card => {
-      const cardTop = card.getBoundingClientRect().top;
+    const source = video.querySelector('source[data-src]');
+    if (!source) {
+      return;
+    }
 
-      if (cardTop < triggerBottom) {
-        card.style.transform = 'translateY(0) rotateX(0deg)';
-        card.style.opacity = '1';
-      } else {
-        card.style.transform = 'translateY(200px) rotateX(40deg)';
-        card.style.opacity = '0.2';
+    source.src = source.dataset.src;
+    video.load();
+    video.dataset.loaded = 'true';
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach((card) => card.classList.add('is-visible'));
+    lazyVideos.forEach((video) => {
+      loadVideo(video);
+      const maybePromise = video.play();
+      if (maybePromise && typeof maybePromise.catch === 'function') {
+        maybePromise.catch(() => {});
       }
     });
-  }
+  } else {
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+    );
 
-  window.addEventListener('scroll', handleScroll);
-  window.addEventListener('load', handleScroll);
+    cards.forEach((card) => cardObserver.observe(card));
+
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+
+          if (entry.isIntersecting) {
+            loadVideo(video);
+            const maybePromise = video.play();
+            if (maybePromise && typeof maybePromise.catch === 'function') {
+              maybePromise.catch(() => {});
+            }
+            return;
+          }
+
+          if (!video.paused) {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '300px 0px' }
+    );
+
+    lazyVideos.forEach((video) => videoObserver.observe(video));
+  }
 </script>
 
 </body>
 </html>
+
