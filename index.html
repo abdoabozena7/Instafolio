@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="photos/Cover1.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Hand&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400;700&family=Outfit:wght@300;400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
   <style>
     /* RESET & BASE STYLES */
     * {
@@ -22,9 +22,9 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Outfit', 'Segoe UI', sans-serif;
       background-color: var(--background-color);
-      color: #f1f1f1;
+      color: var(--text-color);
       line-height: 1.5;
     }
     a {
@@ -39,6 +39,9 @@
       --background-color: #fff0dc;
       --posts-color: #443627 ;
       --posts-text-color: #fff0dc;
+      --foreground: #3d2f22;
+      --muted-foreground: #7d6750;
+      --soft-border: rgba(68, 54, 39, 0.22);
     }
     
   
@@ -49,6 +52,7 @@
       height: 220px;
       background: url('photos/Cover1.png') center/cover no-repeat;
       position: relative;
+      margin-bottom: 0;
       animation: fadeIn 1s ease-out;
       border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
@@ -58,29 +62,40 @@ border-bottom-right-radius: 30px;
 
     }
     
+    .profile-top {
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      margin: -56px 20px 8px;
+      position: relative;
+      z-index: 2;
+    }
+
     /* PROFILE IMAGE - Enhanced */
     .profile-img {
-      position: absolute;
-      top: 160px !important;
-      left: 22px !important;
-      width: 130px !important;
-      height: 130px !important;
+      position: relative;
+      flex: 0 0 auto;
+      width: 124px !important;
+      height: 124px !important;
       object-fit: cover;
       border: 2px solid var(--secondary-color-light) !important;
       border-radius: 50%;
       box-shadow: 0 3px 12px var(--secondary-color-light) !important;
+      overflow: hidden;
+      z-index: 2;
+      background: #a7a7a7;
       animation: slideIn 0.8s ease-out;
     }
     
     /* PROFILE INFO with Professional Bio */
     .profile-info {
-      padding: 60px 20px 15px;
+      padding: 8px 20px 15px;
       animation: fadeIn 1s ease-out;
     }
     .profile-info h2 {
       font-family: 'Edu QLD Hand', cursive;
-      font-size: 30px;
-      margin-top:-30px; 
+      font-size: 32px;
+      margin-top: 0;
       margin-bottom: 6px;
       color:var(--text-color);
       
@@ -98,15 +113,16 @@ border-bottom-right-radius: 30px;
           -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
       margin-top: 15px;
-      font-size: 32px !important;
-      font-family: 'Comic Sans MS', cursive;
+      font-size: 34px !important;
+      font-family: 'Patrick Hand', cursive;
     }
     .profile-info p.bio {
-      font-size: 25px !important;
+      font-size: 20px !important;
       margin-top: 20px;
       margin-bottom: 10px;
       color:var(--text-color);
-      font-family: 'Comic Sans MS', cursive;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
     }
     /* Updated professional bio */
     .profile-info p.bio::before {
@@ -122,6 +138,7 @@ border-bottom-right-radius: 30px;
       color: var(--secondary-color-light);
     }
     .scroll-down {
+      display: none;
       font-size: 30px;
       text-align: center;
       opacity: 1;
@@ -137,7 +154,7 @@ border-bottom-right-radius: 30px;
     /* NAVIGATION TABS */
     .tabs {
       display: flex;
-      border-bottom: 1px solid var(--secondary-color-light);
+      border-bottom: 1px solid var(--soft-border);
       margin-top: 10px;
     }
     .tabs div {
@@ -149,13 +166,403 @@ border-bottom-right-radius: 30px;
       font-weight: 500;
       border-bottom: 2px solid transparent;
   transition: border .3s, color .3s;
-      color:var(--secondary-color-light);
+      color: var(--muted-foreground);
     }
     .tabs .active {
       border-bottom: 2px solid var(--text-color);
       background: linear-gradient(90deg, rgb(196, 171, 144), rgb(141, 92, 9));
         -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+    }
+
+    #postsSection,
+    #projectsSection {
+      padding-bottom: 88px;
+    }
+
+    #projectsSection {
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 14px;
+    }
+
+    .projects-status {
+      color: var(--muted-foreground);
+      font-size: 14px;
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .project-card {
+      background: #f3e6cf;
+      border: 1px solid var(--soft-border);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 8px 18px rgba(38, 28, 20, 0.12);
+    }
+
+    .project-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .project-card h3 {
+      font-size: 18px;
+      margin-bottom: 0;
+      line-height: 1.2;
+      color: var(--text-color);
+    }
+
+    .ai-badge {
+      background: linear-gradient(90deg, #2f2118, #6f4a18);
+      color: #fff0dc;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      flex: 0 0 auto;
+    }
+
+    .project-card p {
+      color: #5a4a39;
+      font-size: 14px;
+      margin-bottom: 10px;
+      min-height: 40px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    .project-chip {
+      background: rgba(68, 54, 39, 0.08);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
+
+    .project-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6f4a18;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    #feedView[hidden],
+    #profileView[hidden] {
+      display: none !important;
+    }
+
+    #profileView {
+      background: #3b3b3b;
+      min-height: 100vh;
+      padding: 14px 12px 92px;
+    }
+
+    .profile-shell {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #060b12;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .profile-topline {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .profile-avatar-panel {
+      background: #151b25;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .profile-avatar-wrap {
+      width: 98px;
+      height: 98px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 240, 220, 0.6);
+      overflow: hidden;
+      background: #d7d7d7;
+    }
+
+    .profile-avatar-simple {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-intro-card {
+      background: #151b25;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .profile-main-title {
+      font-size: 46px;
+      line-height: 1;
+      font-family: 'Edu QLD Hand', cursive;
+      color: var(--secondary-color-light);
+      margin-bottom: 4px;
+    }
+
+    .profile-intro-text {
+      color: #e6ebf3;
+      font-size: 15px;
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+
+    .profile-link-dark {
+      color: var(--secondary-color-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .profile-interest-card {
+      background: #151b25;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .interest-label {
+      color: var(--secondary-color-light);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .profile-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .profile-tag {
+      background: #1e2531;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #dbe2ed;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .profile-sections-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .profile-section-clean {
+      background: #151b25;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .profile-section-clean h4 {
+      color: #fff0dc;
+      font-size: 23px;
+      margin-bottom: 8px;
+      font-family: 'Patrick Hand', cursive;
+    }
+
+    .profile-section-clean p {
+      color: #d7deea;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .date-pill {
+      background: rgba(255, 240, 220, 0.14);
+      color: var(--secondary-color-light);
+      border-radius: 10px;
+      padding: 4px 8px;
+      font-size: 11px;
+      white-space: nowrap;
+      border: 1px solid rgba(255, 240, 220, 0.2);
+    }
+
+    .profile-skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .profile-skill-chip {
+      background: rgba(255, 240, 220, 0.14);
+      color: #fff0dc;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .profile-entry-clean + .profile-entry-clean {
+      border-top: 1px dashed rgba(255, 255, 255, 0.16);
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+
+    .profile-entry-clean h5 {
+      color: #f7fbff;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .profile-entry-sub {
+      color: #8f9ab0;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .profile-entry-meta {
+      color: #9eabbe;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .profile-entry-clean p {
+      margin-bottom: 5px;
+    }
+
+    .profile-entry-skills {
+      color: #d8bb94;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .profile-bottom-links {
+      background: #151b25;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .profile-bottom-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: #1e2531;
+      color: var(--secondary-color-light);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .profile-footer-strip {
+      background: #151b25;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .profile-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .footer-icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255, 240, 220, 0.18);
+      color: var(--secondary-color-light);
+      font-size: 18px;
+    }
+
+    .footer-chip {
+      background: #1e2531;
+      color: #d5deea;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .visit-btn {
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 240, 220, 0.75);
+      color: #2f2216;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 12px 18px;
+    }
+
+    body.profile-mode {
+      background: #3b3b3b;
+      color: #f5f7fb;
+    }
+
+    body.profile-mode .navigation {
+      background: rgba(16, 20, 28, 0.95);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    body.profile-mode .nav-btn {
+      color: #8f9ab0;
+    }
+
+    body.profile-mode .nav-btn.active {
+      color: #fff0dc;
     }
     
     /* POSTS SECTION */
@@ -165,8 +572,6 @@ border-bottom-right-radius: 30px;
     }
 
     /* Projects Grid */
-    
-    }
     .project-title {
       font-size: 16px;
       font-weight: bold;
@@ -177,24 +582,12 @@ border-bottom-right-radius: 30px;
       font-size: 14px;
       color: #aaa;
     }
-    .profile-img {
-      position: absolute;
-      top:180px;
-      bottom: -20px;
-      left: 10px;
-      border: 5px solid #000;
-      border-radius: 50%;
-      width: 110px;
-      height: 110px;
-      overflow: hidden;
-      box-shadow: 0 6px 12px #000;
-      animation: slideIn 0.8s ease-out;
-    }
-    
     .profile-img img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 50%;
     }
     
     
@@ -210,10 +603,80 @@ border-bottom-right-radius: 30px;
     
     /* Mobile adjustments */
     @media (max-width: 600px) {
-      header h2 { font-size: 18px; }
-      .profile-info h2 { font-size: 22px; }
-      .profile-info p.bio { font-size: 14px; }
-      .post-content { font-size: 16px; }
+      .cover {
+        height: 200px;
+        margin-bottom: 0;
+      }
+      .profile-top {
+        margin: -48px 12px 8px;
+        gap: 10px;
+      }
+      .profile-img {
+        width: 108px !important;
+        height: 108px !important;
+      }
+      .profile-info h2 { font-size: 26px; }
+      .profile-info p.handle { font-size: 28px !important; }
+      .profile-info p.bio { font-size: 16px !important; }
+      .profile-numbers {
+        gap: 8px;
+        padding-bottom: 4px;
+      }
+      .profile-numbers strong { font-size: 18px; }
+      .profile-numbers p { font-size: 12px; }
+      #profileView {
+        padding: 14px 12px 92px;
+      }
+      .profile-shell {
+        padding: 12px;
+      }
+      .profile-topline {
+        grid-template-columns: 1fr;
+      }
+      .profile-avatar-panel {
+        padding: 12px;
+      }
+      .profile-interest-card {
+        align-items: flex-start;
+      }
+      .interest-label {
+        width: 100%;
+      }
+      .profile-sections-grid {
+        grid-template-columns: 1fr;
+      }
+      .profile-main-title {
+        font-size: 38px;
+      }
+      .profile-intro-text {
+        font-size: 14px;
+      }
+      .profile-section-clean h4 {
+        font-size: 18px;
+      }
+      .profile-bottom-links {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+      .profile-bottom-links a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+      .profile-footer-strip {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .profile-footer-left {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+      .footer-chip {
+        white-space: nowrap;
+      }
+      .visit-btn {
+        width: 100%;
+      }
     }
     .navigation {
       position: fixed;
@@ -223,8 +686,9 @@ border-bottom-right-radius: 30px;
       max-width: 468px;
       margin: 0 auto;
       backdrop-filter: blur(13px);
+      background-color: rgba(255, 240, 220, 0.88);
       border-radius: 50px;
-      border: 1px solid var(--secondary-color-light);
+      border: 1px solid var(--soft-border);
 
       padding: 13px 24px;
       display: flex;
@@ -262,13 +726,12 @@ border-bottom-right-radius: 30px;
     .view.active {
       display: block;
     }  
-<!--/* <!-- -------------------CSS--------------------------> */-->
+/* -------------------POSTS-------------------------- */
     
 .post-test {
   width: 95%;
   margin: 15px auto;
-  background:rgb(38, 38, 38,0.1);
-  box-shadow: -0px -0px 40px rgba(0, 0, 0, 0.99);
+  box-shadow: 0 16px 34px rgba(32, 22, 15, 0.35);
   overflow: hidden;
   margin-top: 20px;
   margin-bottom: 30px;
@@ -403,15 +866,18 @@ border-bottom-right-radius: 30px;
 
 
 .profile-numbers {
-  display: flex;
-   justify-content: space-around;
-  margin-left: 150px;
-  margin-bottom:-26px;
- 
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: flex-end;
+  margin: 0;
+  padding: 0 4px 6px;
+  gap: 12px;
+  width: 100%;
 }
 
 .profile-numbers div {
-  
+  flex: 1;
+  text-align: center;
   color: var(--text-color);
 }
 
@@ -423,7 +889,7 @@ font-family: 'Patrick Hand', cursive;
 
 .profile-numbers p {
   font-size: 14px;
- 
+  color: var(--muted-foreground);
   font-family: 'Edu QLD Hand', cursive;
 }
 .post-test {
@@ -458,29 +924,26 @@ font-family: 'Patrick Hand', cursive;
 </head>
 <body>
 
-
-
-  
+<main id="feedView">
   <!-- COVER IMAGE -->
-  <div class="cover">  <div class="profile-img"><img src="photos/prof.jpg" alt="Profile photo" width="130" height="130" fetchpriority="high" decoding="async" /></div>
+  <div class="cover"></div>
+  <div class="profile-top">
+    <div class="profile-img"><img src="photos/prof.jpg" alt="Profile photo" width="130" height="130" fetchpriority="high" decoding="async" /></div>
+    <div class="profile-numbers">
+      <div>
+        <strong>+25</strong>
+        <p>Projects</p>
+      </div>
+      <div>
+        <strong>254k</strong>
+        <p>Followers</p>
+      </div>
+      <div>
+        <strong>24</strong>
+        <p>Following</p>
+      </div>
+    </div>
   </div>
-  <div class="scroll-down">&darr;&darr;</div>
-
-
-  <div class="profile-numbers">
-  <div>
-    <strong>+25</strong>
-    <p>Projects</p>
-  </div>
-  <div>
-    <strong>&nbsp254k</strong>
-    <p>Followers</p>
-  </div>
-  <div>
-    <strong> &nbsp&nbsp24</strong>
-    <p>Following</p>
-  </div>
-</div>
   
 
   <!-- PROFILE INFORMATION -->
@@ -495,7 +958,7 @@ font-family: 'Patrick Hand', cursive;
   <div class="highlights">
   <div class="highlight">
   <i class="fas fa-brain"></i>
-    <p>Creativety</p>
+    <p>Creativity</p>
   </div>
   <div class="highlight">
     <i class="fas fa-code"></i>
@@ -522,6 +985,7 @@ font-family: 'Patrick Hand', cursive;
     <div id="projectsTab">Projects</div>
   </div>
 
+<section id="postsSection">
 <!-- POST 1-->
   <div class="post-test">
   <div class="imge-post">
@@ -832,6 +1296,162 @@ Your browser does not support the video tag.
 </div>
 </div>
 <!-- Post 1 END) -->
+</section>
+
+<section id="projectsSection" hidden>
+  <p id="projectsStatus" class="projects-status">Loading projects from GitHub...</p>
+  <div id="projectsGrid" class="projects-grid"></div>
+</section>
+</main>
+
+<section id="profileView" hidden>
+  <div class="profile-shell">
+    <div class="profile-topline">
+      <div class="profile-avatar-panel">
+        <div class="profile-avatar-wrap">
+          <img class="profile-avatar-simple" src="photos/prof.jpg" alt="Abdelrahman Abozena profile photo" loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <div>
+        <div class="profile-intro-card">
+          <h3 class="profile-main-title">abdoabozena7</h3>
+          <p class="profile-intro-text">AI-Driven Software Engineer focused on building LLM agents, multi-agent systems, and production-ready backend ML pipelines.</p>
+          <a class="profile-link-dark" href="https://abdoabozena7.github.io/Instafolio" target="_blank" rel="noopener noreferrer">abdoabozena7.github.io/Instafolio</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-interest-card">
+      <span class="interest-label">Interests</span>
+      <div class="profile-tag-row">
+          <span class="profile-tag">AI</span>
+          <span class="profile-tag">AI Agents</span>
+          <span class="profile-tag">Machine Learning</span>
+          <span class="profile-tag">Backend</span>
+          <span class="profile-tag">Data Fusion</span>
+      </div>
+    </div>
+
+    <div class="profile-sections-grid">
+      <section class="profile-section-clean">
+        <div class="section-head">
+          <h4>AI &amp; Data Science Engineer</h4>
+          <span class="date-pill">2026-now</span>
+        </div>
+        <p class="profile-entry-sub">Instant Software Solutions</p>
+        <p>Engineering AI-driven solutions and integrating LLM-powered automation into backend systems.</p>
+        <div class="profile-entry-skills">Skills: Artificial Intelligence, Data Science</div>
+      </section>
+
+      <section class="profile-section-clean">
+        <div class="section-head">
+          <h4>Machine Learning Engineer</h4>
+          <span class="date-pill">2025-now</span>
+        </div>
+        <p class="profile-entry-sub">Digital Egypt Pioneers Initiative (DEPI)</p>
+        <p>Developing machine learning pipelines and implementing predictive models for real-world production scenarios.</p>
+        <div class="profile-entry-skills">Skills: Machine Learning, Computer Vision</div>
+      </section>
+
+      <section class="profile-section-clean">
+        <h4>Tech Stack</h4>
+        <div class="profile-entry-clean">
+          <h5>AI &amp; ML</h5>
+          <div class="profile-skill-cloud">
+            <span class="profile-skill-chip">LLM Agents</span>
+            <span class="profile-skill-chip">Machine Learning</span>
+            <span class="profile-skill-chip">RAG</span>
+            <span class="profile-skill-chip">Data Fusion</span>
+          </div>
+        </div>
+        <div class="profile-entry-clean">
+          <h5>Backend</h5>
+          <div class="profile-skill-cloud">
+            <span class="profile-skill-chip">Node.js</span>
+            <span class="profile-skill-chip">Express</span>
+            <span class="profile-skill-chip">REST APIs</span>
+            <span class="profile-skill-chip">MongoDB</span>
+            <span class="profile-skill-chip">MySQL</span>
+          </div>
+        </div>
+        <div class="profile-entry-clean">
+          <h5>Languages</h5>
+          <div class="profile-skill-cloud">
+            <span class="profile-skill-chip">Python</span>
+            <span class="profile-skill-chip">JavaScript</span>
+            <span class="profile-skill-chip">TypeScript</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="profile-section-clean">
+        <h4>Education</h4>
+        <div class="profile-entry-clean">
+          <div class="section-head">
+            <h5>Egyptian Chinese University</h5>
+            <span class="date-pill">2017-21</span>
+          </div>
+          <div class="profile-entry-meta">B.S. in Computer Science</div>
+          <div class="profile-entry-skills">Skills: Communication, Presentation, Teamwork</div>
+        </div>
+        <div class="profile-entry-clean">
+          <div class="section-head">
+            <h5>Harbin Institute of Technology</h5>
+            <span class="date-pill">2024</span>
+          </div>
+          <div class="profile-entry-meta">Artificial Intelligence Training Program</div>
+          <p>Completed an intensive program focused on AI fundamentals and practical implementation.</p>
+          <div class="profile-entry-skills">Skills: Machine Learning, AI Prompting</div>
+        </div>
+      </section>
+
+      <section class="profile-section-clean">
+        <h4>Projects</h4>
+        <div class="profile-entry-clean">
+          <div class="section-head">
+            <h5>Agentic AI Community Simulator</h5>
+            <span class="date-pill">2026</span>
+          </div>
+          <p>Multi-agent ecosystem for simulating social opinion evolution and emergent group behaviors in real time.</p>
+          <div class="profile-entry-skills">Skills: AI Agents, REST APIs</div>
+        </div>
+        <div class="profile-entry-clean">
+          <div class="section-head">
+            <h5>Fusion Project (CTR Prediction)</h5>
+            <span class="date-pill">2025</span>
+          </div>
+          <p>Leakage-safe, time-aware machine learning pipeline for click-through rate prediction using multi-source fused data.</p>
+          <div class="profile-entry-skills">Skills: Data Preprocessing, Data Fusion</div>
+        </div>
+      </section>
+
+      <section class="profile-section-clean">
+        <h4>Licenses &amp; Certifications</h4>
+        <div class="profile-entry-clean">
+          <h5>Google x Kaggle - AI Agents Intensive</h5>
+          <div class="profile-entry-meta">Issued Nov 2025 | Expires Nov 2035</div>
+          <div class="profile-entry-skills">Skills: Generative AI, Artificial Intelligence (AI)</div>
+        </div>
+      </section>
+    </div>
+
+    <div class="profile-bottom-links">
+      <a href="mailto:boodyabozena@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/abdelrahman-abozena/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/abdoabozena7" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://abdoabozena7.github.io/Instafolio" target="_blank" rel="noopener noreferrer">Portfolio</a>
+    </div>
+
+    <div class="profile-footer-strip">
+      <div class="profile-footer-left">
+        <button type="button" class="footer-icon-btn"><i class="fas fa-search"></i></button>
+        <span class="footer-chip">26 years</span>
+        <span class="footer-chip">iamsunilfreelancer.com</span>
+      </div>
+      <button type="button" class="visit-btn">Visit Website</button>
+    </div>
+  </div>
+</section>
 <!-- NAVIGATION -->
   
   <section class="navigation">
@@ -851,8 +1471,45 @@ Your browser does not support the video tag.
 
   <!-- TAB TOGGLING & REACTION SCRIPT -->
   <script>
+  const githubUsername = 'abdoabozena7';
   const cards = document.querySelectorAll('.post-test');
   const lazyVideos = document.querySelectorAll('.lazy-video');
+  const postsTab = document.getElementById('postsTab');
+  const projectsTab = document.getElementById('projectsTab');
+  const postsSection = document.getElementById('postsSection');
+  const projectsSection = document.getElementById('projectsSection');
+  const feedView = document.getElementById('feedView');
+  const profileView = document.getElementById('profileView');
+  const projectsGrid = document.getElementById('projectsGrid');
+  const projectsStatus = document.getElementById('projectsStatus');
+  const projectsCountStat = document.querySelector('.profile-numbers strong');
+  const navButtons = document.querySelectorAll('.nav-btn');
+
+  const setActiveTab = (tabName) => {
+    const showProjects = tabName === 'projects';
+    postsTab.classList.toggle('active', !showProjects);
+    projectsTab.classList.toggle('active', showProjects);
+    postsSection.hidden = showProjects;
+    projectsSection.hidden = !showProjects;
+  };
+
+  postsTab.addEventListener('click', () => setActiveTab('posts'));
+  projectsTab.addEventListener('click', () => setActiveTab('projects'));
+
+  const setMainView = (view) => {
+    const showProfile = view === 'profileView';
+    feedView.hidden = showProfile;
+    profileView.hidden = !showProfile;
+    document.body.classList.toggle('profile-mode', showProfile);
+  };
+
+  navButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      navButtons.forEach((b) => b.classList.remove('active'));
+      button.classList.add('active');
+      setMainView(button.dataset.view);
+    });
+  });
 
   const loadVideo = (video) => {
     if (video.dataset.loaded === 'true') {
@@ -869,16 +1526,19 @@ Your browser does not support the video tag.
     video.dataset.loaded = 'true';
   };
 
-  if (!('IntersectionObserver' in window)) {
-    cards.forEach((card) => card.classList.add('is-visible'));
-    lazyVideos.forEach((video) => {
-      loadVideo(video);
-      const maybePromise = video.play();
-      if (maybePromise && typeof maybePromise.catch === 'function') {
-        maybePromise.catch(() => {});
-      }
-    });
-  } else {
+  const setupPostObservers = () => {
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('is-visible'));
+      lazyVideos.forEach((video) => {
+        loadVideo(video);
+        const maybePromise = video.play();
+        if (maybePromise && typeof maybePromise.catch === 'function') {
+          maybePromise.catch(() => {});
+        }
+      });
+      return;
+    }
+
     const cardObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -913,7 +1573,160 @@ Your browser does not support the video tag.
     );
 
     lazyVideos.forEach((video) => videoObserver.observe(video));
-  }
+  };
+
+  const formatDate = (isoDate) =>
+    new Date(isoDate).toLocaleDateString(undefined, {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+
+  const makeChip = (text) => {
+    const chip = document.createElement('span');
+    chip.className = 'project-chip';
+    chip.textContent = text;
+    return chip;
+  };
+
+  const getAiScore = (repo) => {
+    const aiPatterns = [
+      /\bai\b/i,
+      /artificial intelligence/i,
+      /machine learning/i,
+      /\bml\b/i,
+      /deep learning/i,
+      /neural/i,
+      /\bllm\b/i,
+      /\bgpt\b/i,
+      /\bnlp\b/i,
+      /computer vision/i,
+      /\bagent(ic)?\b/i,
+      /pytorch/i,
+      /tensorflow/i,
+      /hugging\s?face/i,
+      /data science/i,
+    ];
+
+    const haystack = `${repo.name || ''} ${repo.description || ''}`;
+    return aiPatterns.reduce((score, pattern) => {
+      return pattern.test(haystack) ? score + 1 : score;
+    }, 0);
+  };
+
+  const createProjectCard = (repo, aiScore) => {
+    const card = document.createElement('article');
+    card.className = 'project-card';
+
+    const head = document.createElement('div');
+    head.className = 'project-head';
+
+    const title = document.createElement('h3');
+    title.textContent = repo.name;
+    head.appendChild(title);
+
+    if (aiScore > 0) {
+      const aiBadge = document.createElement('span');
+      aiBadge.className = 'ai-badge';
+      aiBadge.textContent = 'AI Related';
+      head.appendChild(aiBadge);
+    }
+
+    const description = document.createElement('p');
+    description.textContent = repo.description || 'No description provided yet.';
+
+    const meta = document.createElement('div');
+    meta.className = 'project-meta';
+    if (repo.language) {
+      meta.appendChild(makeChip(repo.language));
+    }
+    meta.appendChild(makeChip(`${repo.stargazers_count} stars`));
+    if (repo.fork) {
+      meta.appendChild(makeChip('Fork'));
+    }
+    meta.appendChild(makeChip(`Updated ${formatDate(repo.updated_at)}`));
+
+    const link = document.createElement('a');
+    link.className = 'project-link';
+    link.href = repo.html_url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'View on GitHub';
+
+    card.appendChild(head);
+    card.appendChild(description);
+    card.appendChild(meta);
+    card.appendChild(link);
+
+    return card;
+  };
+
+  const fetchAllRepos = async (username) => {
+    const allRepos = [];
+    let page = 1;
+
+    while (true) {
+      const response = await fetch(
+        `https://api.github.com/users/${username}/repos?per_page=100&page=${page}&sort=updated`
+      );
+
+      if (!response.ok) {
+        throw new Error(`GitHub API ${response.status}`);
+      }
+
+      const batch = await response.json();
+      if (!Array.isArray(batch) || batch.length === 0) {
+        break;
+      }
+
+      allRepos.push(...batch);
+      if (batch.length < 100) {
+        break;
+      }
+
+      page += 1;
+    }
+
+    return allRepos;
+  };
+
+  const renderProjects = async () => {
+    projectsStatus.textContent = 'Loading projects from GitHub...';
+
+    try {
+      const repos = await fetchAllRepos(githubUsername);
+      projectsGrid.replaceChildren();
+
+      if (repos.length === 0) {
+        projectsStatus.textContent = 'No public repositories found.';
+        return;
+      }
+
+      const reposWithScore = repos
+        .map((repo) => ({ repo, aiScore: getAiScore(repo) }))
+        .sort((a, b) => {
+          if (b.aiScore !== a.aiScore) {
+            return b.aiScore - a.aiScore;
+          }
+          return new Date(b.repo.updated_at) - new Date(a.repo.updated_at);
+        });
+
+      reposWithScore.forEach(({ repo, aiScore }) => {
+        projectsGrid.appendChild(createProjectCard(repo, aiScore));
+      });
+
+      const aiCount = reposWithScore.filter((item) => item.aiScore > 0).length;
+      projectsStatus.textContent = `${repos.length} projects from github.com/${githubUsername} | ${aiCount} AI-related on top`;
+      projectsCountStat.textContent = `+${repos.length}`;
+    } catch (error) {
+      projectsStatus.textContent = 'Failed to load projects from GitHub. Please try again.';
+    }
+  };
+
+  setMainView('feedView');
+  setActiveTab('posts');
+  setupPostObservers();
+  renderProjects();
 </script>
 
 </body>
